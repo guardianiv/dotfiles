@@ -1,0 +1,18 @@
+# Shell
+zsh/.zshrc=.zshrc
+zsh/.zshenv=.zshenv
+
+# Neovim
+nvim=.config/nvim
+
+# Git
+git/.gitconfig=.gitconfig
+
+# Tmux
+tmux/.tmux.conf=.tmux.conf
+
+# Hyprland
+hypr=.config/hypr
+
+# Waybar
+waybar=.config/waybar
