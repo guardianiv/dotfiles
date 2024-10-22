@@ -1,0 +1,8 @@
+stow
+waybar
+zsh
+tmux
+hyprland
+neovim
+git
+
