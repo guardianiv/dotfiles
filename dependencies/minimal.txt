@@ -1,0 +1,37 @@
+# Package format:
+# [category]
+# package_name | dnf_name | apt_name | pacman_name | brew_name
+# Use '-' if package isn't available on that platform
+# Use '=' if package name is the same across platforms
+
+[essential]
+git | = | = | = | =
+curl | = | = | = | =
+wget | = | = | = | =
+ripgrep | = | = | = | =
+fd-find | = | fd-find | fd | fd
+
+[shell]
+zsh | = | = | = | =
+tmux | = | = | = | =
+eza | = | exa | eza | eza
+bat | = | = | = | =
+
+[development]
+neovim | = | = | = | =
+gcc | = | build-essential | base-devel | =
+python3 | = | = | = | =
+nodejs | = | = | = | =
+
+[window-manager]
+hyprland | = | - | = | -
+waybar | = | = | = | -
+wofi | = | = | = | -
+
+[optional]
+docker | = | = | = | =
+podman | = | = | = | =
+distrobox | = | = | = | -
+
+[fonts]
+jetbrains-nerd-fonts | = | fonts-jetbrains-mono | ttf-jetbrains-mono | font-jetbrains-mono-nerd-font
