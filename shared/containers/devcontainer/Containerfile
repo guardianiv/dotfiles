@@ -1,0 +1,32 @@
+FROM registry.fedoraproject.org/fedora:latest
+
+RUN dnf install -y \
+      neovim \
+      git \
+      make \
+      cmake \
+      ninja-build \
+      gcc \
+      gcc-gfortran \
+      python3 \
+      python3-pip \
+      fd-find \
+      ripgrep \
+      tree \
+      tmux \
+      zsh \
+      doxygen \
+      graphviz && \
+    dnf clean all
+
+RUN pip3 install --no-cache-dir \
+      fortls \
+      fparser
+
+ARG HOST_UID=501
+ARG HOST_GID=20
+RUN groupadd -g ${HOST_GID} dev || true && \
+    useradd -u ${HOST_UID} -g ${HOST_GID} -m -s /bin/zsh dev
+
+USER dev
+WORKDIR /home/dev

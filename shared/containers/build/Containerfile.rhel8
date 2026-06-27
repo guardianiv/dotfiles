@@ -1,0 +1,35 @@
+# Containerfile.rhel8
+# Build container for producing RHEL 8 x86_64 .so artifacts
+# Usage: see build.sh in this directory
+
+FROM registry.access.redhat.com/ubi8/ubi:latest
+
+# --- Base build dependencies + Doxygen ---
+RUN dnf install -y \
+      https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    dnf config-manager --set-enabled ubi-8-codeready-builder-rpms && \
+    dnf install -y \
+      make \
+      cmake \
+      ninja-build \
+      gcc \
+      gcc-gfortran \
+      which \
+      tar \
+      gzip && \
+    dnf clean all
+
+# --- Intel oneAPI HPC Toolkit (IFX) - offline bundle ---
+# Place the downloaded offline installer at build/ifx-bundle/ before building.
+# This directory is gitignored - the installer is never committed.
+COPY ifx-bundle/ /tmp/ifx-bundle/
+RUN if [ -f /tmp/ifx-bundle/install.sh ]; then \
+        /tmp/ifx-bundle/install.sh -a --silent --eula accept ; \
+    else \
+        echo "WARNING: No IFX installer found in build context. Skipping IFX install." ; \
+    fi && \
+    rm -rf /tmp/ifx-bundle
+
+RUN echo 'source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1 || true' >> /etc/bashrc
+
+WORKDIR /src

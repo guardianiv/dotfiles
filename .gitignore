@@ -1,2 +1,6 @@
 podman/
 shared/nvim/.config/nvim/lazy-lock.json
+ifx-bundle/
+*.installer
+shared/containers/build/ifx-bundle/
+*.sh.bak
